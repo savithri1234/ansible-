@@ -1,0 +1,9 @@
+---
+- hosts: web
+  tasks:
+   - name: installing epel-release
+     ansible.builtin.module:
+       name: epel-release
+       state: present
+          
+

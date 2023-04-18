@@ -1,0 +1,12 @@
+---
+- hosts: web
+  tasks:
+    - name:installing nginx web server if not installed
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+   - name: start the nginx web server
+     ansible.built.service:
+       name: nginx
+       state: started
+   

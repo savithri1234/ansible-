@@ -1,0 +1,41 @@
+---
+- hosts: web
+  tasks:
+   - name: installing nginx web server if not installed
+     ansible.builtin.yum:
+       name: nginx
+       state: present
+   - name: start the nginx web server
+     ansible.builtin.service:
+       name: nginx
+       state: started
+   - name: change the port number of nginx web
+     ansible.builtin.template:
+       src: /root/playbooks/nginx.conf.j2
+       dest: /etc/nginx/nginx.conf
+   - name: restart the nginx web service 
+     ansible.builtin.service:
+       name: nginx
+       state: restarted
+   - name: change the welcome page
+     ansible.builtin.copy:
+       src: /root/playbooks/index.html
+       dest: /var/www/html/
+   - name: restart the nginx web service
+     ansible.builtin.service:
+       name: nginx
+       state: restarted
+
+---
+- hosts: web
+  tasks:
+    - name: installing apache2 web server if not installed
+      ansible.builtin.yum:
+        name: apache2
+        state: present
+    - name : start the apache2 web server
+      ansible.builtin.service:
+        name: apache2
+        state: started
+    
+

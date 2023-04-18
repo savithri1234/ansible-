@@ -1,0 +1,13 @@
+---
+- hosts: web
+  tasks:
+    - name: create a dir
+      ansible.builtin.file:
+        path: /opt/testans
+        state: directory
+        mode: 777
+    - name: create a file
+      ansible.builtin.file:
+        path: /opt/testdoc
+        state: touch
+        mode: 0755

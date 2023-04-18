@@ -1,0 +1,15 @@
+---
+- hosts: app
+  tasks:
+    - name: installing apache2 web server if not installed
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+    - name : start the apache2 web server
+      ansible.builtin.service:
+        name: httpd
+        state: started
+    
+
+
+
